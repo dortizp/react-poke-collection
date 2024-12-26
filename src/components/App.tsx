@@ -7,6 +7,8 @@ const App = () => {
   const isLogin = username !== "";
 
   const handleLogin = (username) => {
+    const isSavedUsername = window.localStorage.key("username")
+    console.log('isSavedUsername ',isSavedUsername )
     window.localStorage.setItem("username", username);
     setUsername(username);
   };
@@ -17,9 +19,8 @@ const App = () => {
 
   return (
     <div>
-      <button onClick={handleLogin}>Login On/Off</button>
       {isLogin ? (
-        <CollectionPage username={username} onLogout={handleLogout} />
+        <CollectionPage name={username} onLogout={handleLogout} />
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}
