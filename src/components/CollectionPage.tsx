@@ -1,4 +1,5 @@
 import { getFavorites } from "../services/pokemon";
+import PokemonSearch from "./PokemonSearch";
 const CollectionPage = ({ name, onLogout }) => {
   console.log("username", name);
   const handleLogout = () => onLogout();
@@ -13,6 +14,8 @@ const CollectionPage = ({ name, onLogout }) => {
         {name !== "" && <p>{`Hello ${name}`}</p>}
         <button onClick={handleFavorites}>Get Pokemon Favorites</button>
         <button onClick={handleLogout}>Exit</button>
+        <PokemonSearch />
+
       </div>
     </div>
   );
