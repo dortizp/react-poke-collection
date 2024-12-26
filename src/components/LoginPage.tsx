@@ -1,12 +1,10 @@
 import { useState } from "react";
-const LoginPage = ({onLogin}) => {
+const LoginPage = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: make API call with username
-    // TODO: set username in state
-    onLogin(username)
-  }
+    onLogin(username);
+  };
   const handleChangeUsername = (e) => setUsername(e.target.value);
   return (
     <div>

@@ -11,7 +11,6 @@ const App = () => {
 
   const handleLogin = (username) => {
     const isSavedUsername = window.localStorage.key("username");
-    console.log("isSavedUsername ", isSavedUsername);
     window.localStorage.setItem("username", username);
     setUsername(username);
   };
@@ -21,7 +20,6 @@ const App = () => {
   };
   const handleSearch = async (pokemonName) => {
     const pokemonData = await searchPokemon(pokemonName);
-    console.log("pokemonData ", pokemonData);
     const newPokemon = {
       name: pokemonData.species.name,
       avatar_url: pokemonData.sprites.front_default,
@@ -30,12 +28,10 @@ const App = () => {
       height: pokemonData.height,
       id: pokemonData.id,
     };
-    console.log("newPokemon ", newPokemon);
     setPokemon(newPokemon);
   };
   const handleFavorites = async () => {
     const newFavorites = await getFavorites(username);
-    console.log("newFavorites ", newFavorites);
     setFavorites(newFavorites);
   };
 
