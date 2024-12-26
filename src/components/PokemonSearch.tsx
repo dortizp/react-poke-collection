@@ -3,7 +3,6 @@ import { useState } from "react";
 const PokemonSearch = ({
   pokemon,
   handleSearch,
-  handleFavorites,
   handleAddFavorites,
 }) => {
   const [pokemonName, setPokemonName] = useState("");
@@ -13,6 +12,7 @@ const PokemonSearch = ({
   };
   const handleClick = () => {
     handleSearch(pokemonName);
+    setPokemonName("")
   };
   return (
     <div>

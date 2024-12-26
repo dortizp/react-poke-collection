@@ -13,10 +13,14 @@ const App = () => {
     const isSavedUsername = window.localStorage.key("username");
     window.localStorage.setItem("username", username);
     setUsername(username);
+    setPokemon({});
+    setFavorites({});
   };
   const handleLogout = () => {
     window.localStorage.removeItem("username");
     setUsername("");
+    setPokemon({});
+    setFavorites({});
   };
   const handleSearch = async (pokemonName) => {
     const pokemonData = await searchPokemon(pokemonName);
@@ -30,13 +34,14 @@ const App = () => {
     };
     setPokemon(newPokemon);
   };
-  const handleFavorites = async () => {
+  const fetchFavorites = async () => {
     const newFavorites = await getFavorites(username);
     setFavorites(newFavorites);
   };
 
   const handleAddFavorites = async () => {
     await addFavorite(username, pokemon);
+    await fetchFavorites();
   };
 
   return (
@@ -48,8 +53,8 @@ const App = () => {
           pokemon={pokemon}
           handleSearch={handleSearch}
           favorites={favorites}
-          handleFavorites={handleFavorites}
           handleAddFavorites={handleAddFavorites}
+          onFavorites={fetchFavorites}
         />
       ) : (
         <LoginPage onLogin={handleLogin} />

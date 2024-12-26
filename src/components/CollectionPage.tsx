@@ -7,12 +7,12 @@ const CollectionPage = ({
   handleSearch,
   pokemon,
   favorites,
-  handleFavorites,
   handleAddFavorites,
+  onFavorites,
 }) => {
   const handleLogout = () => onLogout();
   useEffect(() => {
-    handleFavorites();
+    onFavorites();
   }, []);
 
   return (
@@ -24,7 +24,6 @@ const CollectionPage = ({
         <PokemonSearch
           pokemon={pokemon}
           handleSearch={handleSearch}
-          handleFavorites={handleFavorites}
           handleAddFavorites={handleAddFavorites}
         />
         <Favorites favorites={favorites} />
