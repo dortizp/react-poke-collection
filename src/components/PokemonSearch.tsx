@@ -1,11 +1,15 @@
 import { useState } from "react";
 
-const PokemonSearch = ({ pokemon, handleSearch , handleFavorites}) => {
+const PokemonSearch = ({
+  pokemon,
+  handleSearch,
+  handleFavorites,
+  handleAddFavorites,
+}) => {
   const [pokemonName, setPokemonName] = useState("");
   const handleChangeName = (e) => setPokemonName(e.target.value);
   const handleClickAdd = () => {
-    handleFavorites(pokemon)
-    // TODO: call api to add pokemon to favorites
+    handleAddFavorites(pokemon);
   };
   const handleClick = () => {
     handleSearch(pokemonName);
@@ -28,7 +32,7 @@ const PokemonSearch = ({ pokemon, handleSearch , handleFavorites}) => {
                 <span>{pokemon.types.map((type) => type)}</span>
               )}
             </p>
-            <img src={pokemon.img_url} />
+            <img src={pokemon.avatar_url} />
           </>
         )}
         <button onClick={handleClickAdd}>Add to Favorites</button>

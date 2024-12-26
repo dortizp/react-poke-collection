@@ -1,7 +1,7 @@
 import LoginPage from "./LoginPage";
 import CollectionPage from "./CollectionPage";
 import { useState } from "react";
-import { searchPokemon, getFavorites  } from "../services/pokemon";
+import { searchPokemon, getFavorites, addFavorite } from "../services/pokemon";
 
 const App = () => {
   const [username, setUsername] = useState("");
@@ -10,8 +10,8 @@ const App = () => {
   const isLogin = username !== "";
 
   const handleLogin = (username) => {
-    const isSavedUsername = window.localStorage.key("username")
-    console.log('isSavedUsername ',isSavedUsername )
+    const isSavedUsername = window.localStorage.key("username");
+    console.log("isSavedUsername ", isSavedUsername);
     window.localStorage.setItem("username", username);
     setUsername(username);
   };
@@ -24,7 +24,7 @@ const App = () => {
     console.log("pokemonData ", pokemonData);
     const newPokemon = {
       name: pokemonData.species.name,
-      img_url: pokemonData.sprites.front_default,
+      avatar_url: pokemonData.sprites.front_default,
       types: pokemonData.types.map((el) => el.type.name),
       weight: pokemonData.weight,
       height: pokemonData.height,
@@ -32,18 +32,29 @@ const App = () => {
     };
     console.log("newPokemon ", newPokemon);
     setPokemon(newPokemon);
-  }
+  };
   const handleFavorites = async () => {
     const newFavorites = await getFavorites(username);
-    console.log('newFavorites ',newFavorites )
-    setFavorites(newFavorites)
+    console.log("newFavorites ", newFavorites);
+    setFavorites(newFavorites);
   };
 
+  const handleAddFavorites = async () => {
+    await addFavorite(username, pokemon);
+  };
 
   return (
     <div>
       {isLogin ? (
-        <CollectionPage name={username} onLogout={handleLogout} pokemon={pokemon} handleSearch={handleSearch} favorites={favorites} handleFavorites={handleFavorites}/>
+        <CollectionPage
+          name={username}
+          onLogout={handleLogout}
+          pokemon={pokemon}
+          handleSearch={handleSearch}
+          favorites={favorites}
+          handleFavorites={handleFavorites}
+          handleAddFavorites={handleAddFavorites}
+        />
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}
