@@ -7,10 +7,10 @@ export const getFavorites = async (username) => {
   console.log("response ", response);
   if (response.ok) {
     const data = await response.json();
-    console.log("data ", data);
+    // console.log("data ", data);
   } else {
     const error = await response.json();
-    console.log(error.message || "an error ocurred");
+    // console.log(error.message || "an error ocurred");
   }
 };
 
@@ -20,10 +20,12 @@ export const searchPokemon = async (name) => {
   console.log("response ", response);
   if (response.ok) {
     const data = await response.json();
-    console.log("data ", data);
+    // console.log("data ", data);
+    return data
   } else {
     const error = await response.json();
-    console.log(error.message || "an error ocurred");
+    // console.log(error.message || "an error ocurred");
+    return error
   }
 
 }
