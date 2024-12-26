@@ -1,11 +1,12 @@
 import LoginPage from "./LoginPage";
 import CollectionPage from "./CollectionPage";
 import { useState } from "react";
-import { searchPokemon } from "../services/pokemon";
+import { searchPokemon, getFavorites  } from "../services/pokemon";
 
 const App = () => {
   const [username, setUsername] = useState("");
   const [pokemon, setPokemon] = useState({});
+  const [favorites, setFavorites] = useState({});
   const isLogin = username !== "";
 
   const handleLogin = (username) => {
@@ -32,11 +33,17 @@ const App = () => {
     console.log("newPokemon ", newPokemon);
     setPokemon(newPokemon);
   }
+  const handleFavorites = async () => {
+    const newFavorites = await getFavorites(username);
+    console.log('newFavorites ',newFavorites )
+    setFavorites(newFavorites)
+  };
+
 
   return (
     <div>
       {isLogin ? (
-        <CollectionPage name={username} onLogout={handleLogout} pokemon={pokemon} handleSearch={handleSearch}/>
+        <CollectionPage name={username} onLogout={handleLogout} pokemon={pokemon} handleSearch={handleSearch} favorites={favorites} handleFavorites={handleFavorites}/>
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}
