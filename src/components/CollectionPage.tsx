@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PokemonSearch from "./PokemonSearch";
 import Favorites from "./Favorites";
 const CollectionPage = ({
-  name,
+  username,
   onLogout,
   onSearchPokemon,
   pokemon,
@@ -19,13 +19,14 @@ const CollectionPage = ({
     <div>
       <div>
         <h1>Collection</h1>
-        {name !== "" && <p>{`Hello ${name}`}</p>}
+        {username !== "" && <p>{`Hello ${username}`}</p>}
         <button onClick={handleLogout}>Exit</button>
         <PokemonSearch
           pokemon={pokemon}
           onSearchPokemon={onSearchPokemon}
           onAddPokemonToFavorites={onAddPokemonToFavorites}
           onFavorites={onFavorites}
+          username={username}
         />
         <Favorites favorites={favorites} />
       </div>

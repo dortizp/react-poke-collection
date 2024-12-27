@@ -2,6 +2,7 @@ import { useState } from "react";
 import { deleteFavorite } from "../services/pokemon";
 
 const PokemonSearch = ({
+  username,
   pokemon,
   onSearchPokemon,
   onAddPokemonToFavorites,
@@ -17,7 +18,7 @@ const PokemonSearch = ({
     setPokemonName("");
   };
   const handleDeletePokemon = async () => {
-    await deleteFavorite("david", pokemon.id);
+    await deleteFavorite(username, pokemon.id);
     await onFavorites();
   };
   return (

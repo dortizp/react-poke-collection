@@ -49,7 +49,7 @@ const App = () => {
     <div>
       {isLogin ? (
         <CollectionPage
-          name={username}
+          username={username}
           onLogout={handleLogout}
           pokemon={pokemon}
           onSearchPokemon={searchPokemon}
