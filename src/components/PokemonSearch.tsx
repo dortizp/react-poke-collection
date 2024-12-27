@@ -1,6 +1,12 @@
 import { useState } from "react";
+import { deleteFavorite } from "../services/pokemon";
 
-const PokemonSearch = ({ pokemon, onSearchPokemon, onAddPokemonToFavorites }) => {
+const PokemonSearch = ({
+  pokemon,
+  onSearchPokemon,
+  onAddPokemonToFavorites,
+  onFavorites,
+}) => {
   const [pokemonName, setPokemonName] = useState("");
   const handleChangeName = (e) => setPokemonName(e.target.value);
   const handleClickAdd = () => {
@@ -9,6 +15,10 @@ const PokemonSearch = ({ pokemon, onSearchPokemon, onAddPokemonToFavorites }) =>
   const handleClick = () => {
     onSearchPokemon(pokemonName);
     setPokemonName("");
+  };
+  const handleDeletePokemon = async () => {
+    await deleteFavorite("david", pokemon.id);
+    await onFavorites();
   };
   return (
     <div>
@@ -32,6 +42,7 @@ const PokemonSearch = ({ pokemon, onSearchPokemon, onAddPokemonToFavorites }) =>
           </>
         )}
         <button onClick={handleClickAdd}>Add to Favorites</button>
+        <button onClick={handleDeletePokemon}>Delete from Favorites</button>
       </div>
     </div>
   );

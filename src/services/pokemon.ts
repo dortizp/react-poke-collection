@@ -45,4 +45,15 @@ export const addFavorite = async (username, pokemon) => {
   }
 };
 
-export const deleteFavorite = async(username, pokemonId) => {}
+export const deleteFavorite = async(username, pokemonId) => {
+  const url = `${POKECOLLECTION_BASE_URL}/api/${username}/favorites/${pokemonId}`;
+  const options = {
+    method: "DELETE",
+  };
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    const error = await response.json();
+    return error;
+  }
+
+}

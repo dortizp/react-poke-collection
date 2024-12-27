@@ -25,6 +25,7 @@ const CollectionPage = ({
           pokemon={pokemon}
           onSearchPokemon={onSearchPokemon}
           onAddPokemonToFavorites={onAddPokemonToFavorites}
+          onFavorites={onFavorites}
         />
         <Favorites favorites={favorites} />
       </div>
