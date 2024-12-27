@@ -1,7 +1,7 @@
 import LoginPage from "./LoginPage";
 import CollectionPage from "./CollectionPage";
 import { useState } from "react";
-import { searchPokemon, getFavorites, addFavorite } from "../services/pokemon";
+import { getPokemon, getFavorites, addFavorite } from "../services/pokemon";
 
 const App = () => {
   const [username, setUsername] = useState(
@@ -23,8 +23,8 @@ const App = () => {
     setPokemon({});
     setFavorites({});
   };
-  const handleSearch = async (pokemonName) => {
-    const pokemonData = await searchPokemon(pokemonName);
+  const searchPokemon = async (pokemonName) => {
+    const pokemonData = await getPokemon(pokemonName);
     const newPokemon = {
       name: pokemonData.species.name,
       avatar_url: pokemonData.sprites.front_default,
@@ -40,7 +40,7 @@ const App = () => {
     setFavorites(newFavorites);
   };
 
-  const handleAddFavorites = async () => {
+  const addPokemonToFavorites = async () => {
     await addFavorite(username, pokemon);
     await fetchFavorites();
   };
@@ -52,9 +52,9 @@ const App = () => {
           name={username}
           onLogout={handleLogout}
           pokemon={pokemon}
-          handleSearch={handleSearch}
+          onSearchPokemon={searchPokemon}
           favorites={favorites}
-          handleAddFavorites={handleAddFavorites}
+          onAddPokemonToFavorites={addPokemonToFavorites}
           onFavorites={fetchFavorites}
         />
       ) : (

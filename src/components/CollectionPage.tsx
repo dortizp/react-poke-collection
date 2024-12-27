@@ -4,10 +4,10 @@ import Favorites from "./Favorites";
 const CollectionPage = ({
   name,
   onLogout,
-  handleSearch,
+  onSearchPokemon,
   pokemon,
   favorites,
-  handleAddFavorites,
+  onAddPokemonToFavorites,
   onFavorites,
 }) => {
   const handleLogout = () => onLogout();
@@ -23,8 +23,8 @@ const CollectionPage = ({
         <button onClick={handleLogout}>Exit</button>
         <PokemonSearch
           pokemon={pokemon}
-          handleSearch={handleSearch}
-          handleAddFavorites={handleAddFavorites}
+          onSearchPokemon={onSearchPokemon}
+          onAddPokemonToFavorites={onAddPokemonToFavorites}
         />
         <Favorites favorites={favorites} />
       </div>

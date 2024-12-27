@@ -1,18 +1,14 @@
 import { useState } from "react";
 
-const PokemonSearch = ({
-  pokemon,
-  handleSearch,
-  handleAddFavorites,
-}) => {
+const PokemonSearch = ({ pokemon, onSearchPokemon, onAddPokemonToFavorites }) => {
   const [pokemonName, setPokemonName] = useState("");
   const handleChangeName = (e) => setPokemonName(e.target.value);
   const handleClickAdd = () => {
-    handleAddFavorites(pokemon);
+    onAddPokemonToFavorites(pokemon);
   };
   const handleClick = () => {
-    handleSearch(pokemonName);
-    setPokemonName("")
+    onSearchPokemon(pokemonName);
+    setPokemonName("");
   };
   return (
     <div>

@@ -14,7 +14,7 @@ export const getFavorites = async (username) => {
   }
 };
 
-export const searchPokemon = async (name) => {
+export const getPokemon = async (name) => {
   const url = `${POKEAPI_BASE_URL}/${name}`;
   const response = await fetch(url);
   if (response.ok) {
@@ -44,3 +44,5 @@ export const addFavorite = async (username, pokemon) => {
     return error;
   }
 };
+
+export const deleteFavorite = async(username, pokemonId) => {}
