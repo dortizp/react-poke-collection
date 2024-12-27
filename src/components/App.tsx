@@ -4,13 +4,14 @@ import { useState } from "react";
 import { searchPokemon, getFavorites, addFavorite } from "../services/pokemon";
 
 const App = () => {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(
+    window.localStorage.getItem("username") || ""
+  );
   const [pokemon, setPokemon] = useState({});
   const [favorites, setFavorites] = useState({});
   const isLogin = username !== "";
 
   const handleLogin = (username) => {
-    const isSavedUsername = window.localStorage.key("username");
     window.localStorage.setItem("username", username);
     setUsername(username);
     setPokemon({});
